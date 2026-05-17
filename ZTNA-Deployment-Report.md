@@ -5,15 +5,15 @@
 
 ## Executive Summary
 
-This project hardened a publicly exposed GCP Linux server into a Zero Trust architecture. Password authentication was replaced with cryptographic key pairs, inbound reconnaissance traffic was silently dropped at the kernel level, and SSH access was locked to an encrypted private mesh network. A nightly automated backup prevents configuration loss from remote misfire. A final internal audit confirmed the server actively drops unauthorized traffic and has no reachable attack surface on the public internet.
+The purpose of this project is to secure (harden) a publicly available GCP Linux server to a Zero Trust model. I removed password-based authentication with Authentication by cryptographic key pairs, dropped (silently) all inbound reconnaissance traffic at the kernel level, and restricted SSH access to an encrypted Private Mesh Network. Automated nightly backups are regularly performed to prevent the loss of the configuration due to erroneous remote commands. An internal audit confirmed that the server actively drops all unauthorized traffic and has no attack surface accessible from the Public Internet.
 
 ---
 
 ## Objective
 
-1. Build a cloud server capable of surviving routine hostile internet traffic without manual intervention.
-2. Move from a traditional open-perimeter model to a Zero Trust framework, where no connection is trusted by default — regardless of where it originates.
-3. Document the full deployment and audit process as a replicable SOC Tier 1 administrative reference.
+1. Build a cloud server that is resilient to routine hostile internet traffic with zero manual intervention.
+2. Transition from an open-perimeter model (Traditional) to the Zero Trust model in which no connection will be accepted without being verified, regardless of where the connection was initiated.
+3. Document every stage of this deployment and audit process for future reference as a replicable Tier 1 Administrative reference.
 
 ---
 
