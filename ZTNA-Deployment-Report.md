@@ -405,6 +405,16 @@ The structural problem: every packet travels to the central server and back, eve
 
 ---
 
+**IPSec — the protocol underneath most traditional VPNs**
+
+IPSec (Internet Protocol Security) is not a VPN product — it is a suite of protocols that encrypts and authenticates traffic at the IP layer. Most corporate VPNs and site-to-site tunnels run on top of it. When someone says "we use a VPN" in an enterprise context, there is a good chance IPSec is doing the actual encryption work underneath.
+
+It operates in two modes. Transport mode encrypts only the payload of each packet, leaving the header visible. Tunnel mode wraps the entire original packet inside a new encrypted one — this is what VPN tunnels use. IPSec also typically pairs with IKE (Internet Key Exchange) to handle the negotiation of encryption keys between two endpoints before the tunnel comes up.
+
+The reason WireGuard exists is largely a reaction to IPSec's complexity. IPSec is powerful but the configuration surface is large, the attack surface follows, and getting it wrong is easy. WireGuard achieves similar security with a codebase that is roughly 100 times smaller. For this project, WireGuard via Tailscale was the right call — IPSec would have been significant overhead for a single-server personal lab.
+
+---
+
 **Mesh VPN — what Tailscale is**
 
 In a mesh VPN, every device connects directly to every other device — peer-to-peer, no central relay for actual traffic. There is still a coordination server (Tailscale's control plane), but it only handles one job: brokering the initial introduction between devices and managing key exchange. After that handshake, traffic flows directly between peers without touching Tailscale's infrastructure at all.
@@ -443,7 +453,7 @@ Normal DNS is unencrypted. Your ISP and anyone monitoring the network can see ev
 | Tor | Anonymity | Yes | Yes | No (relay network) |
 | DoH / DoT | DNS query privacy only | DNS only | No | Depends on resolver |
 
-**Further reading:** [Tailscale How It Works](https://tailscale.com/blog/how-tailscale-works) | [WireGuard Technical Whitepaper](https://www.wireguard.com/papers/wireguard.pdf) | [Tor Project Overview](https://www.torproject.org/about/history/) | [Cloudflare — What is DoH](https://www.cloudflare.com/learning/dns/dns-over-https/)
+**Further reading:** [Cloudflare — What is IPSec](https://www.cloudflare.com/learning/network-layer/what-is-ipsec/) | [Tailscale How It Works](https://tailscale.com/blog/how-tailscale-works) | [WireGuard Technical Whitepaper](https://www.wireguard.com/papers/wireguard.pdf) | [Tor Project Overview](https://www.torproject.org/about/history/) | [Cloudflare — What is DoH](https://www.cloudflare.com/learning/dns/dns-over-https/)
 
 ---
 
