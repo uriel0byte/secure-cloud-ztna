@@ -449,6 +449,7 @@ Normal DNS is unencrypted. Your ISP and anyone monitoring the network can see ev
 |---|---|---|---|---|
 | Normal traffic | Connectivity | No | No | No |
 | Traditional VPN | Privacy / access control | Yes | Partially | Yes — always |
+| IPSec | Encryption protocol underlying most VPNs | Yes | Partially | Yes — or peer-to-peer |
 | Mesh VPN (Tailscale) | Secure P2P connectivity | Yes | No | Coordination only |
 | Tor | Anonymity | Yes | Yes | No (relay network) |
 | DoH / DoT | DNS query privacy only | DNS only | No | Depends on resolver |
