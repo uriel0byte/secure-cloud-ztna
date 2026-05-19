@@ -85,6 +85,8 @@ I deployed Tailscale, which issued the server a private Tailnet IP (`100.114.172
 
 For mobile access, I added an iPad to the Tailnet. A separate ed25519 key pair was generated inside Termius and the public key was appended to `~/.ssh/authorized_keys` on the server. Each device holds its own private key — if the iPad is compromised, that key gets revoked without affecting anything else.
 
+> The same pattern applies to any device on the Tailnet — generate a key pair on the device, append the public key to ~/.ssh/authorized_keys, connect via the Tailscale IP. Windows users can use PuTTYgen for key generation and PuTTY as the SSH client.
+
 > 📹 **Recording:** [![Asciinema — Phase 3: Zero Trust Pivot](https://asciinema.org/a/1073350.svg)](https://asciinema.org/a/1073350)
 
 ---
@@ -242,8 +244,6 @@ nano ~/.ssh/authorized_keys
 # Add the iPad public key on a new line below the existing VMware key
 # Each device holds its own private key — revoke per-device without affecting others
 ```
-
-> The same pattern applies to any device on the Tailnet — generate a key pair on the device, append the public key to ~/.ssh/authorized_keys, connect via the Tailscale IP. Windows users can use PuTTYgen for key generation and PuTTY as the SSH client.
 
 ---
 
