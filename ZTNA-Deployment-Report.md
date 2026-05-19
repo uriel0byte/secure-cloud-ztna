@@ -243,6 +243,8 @@ nano ~/.ssh/authorized_keys
 # Each device holds its own private key — revoke per-device without affecting others
 ```
 
+> The same pattern applies to any device on the Tailnet — generate a key pair on the device, append the public key to ~/.ssh/authorized_keys, connect via the Tailscale IP. Windows users can use PuTTYgen for key generation and PuTTY as the SSH client.
+
 ---
 
 ### Phase 4 — Automated Backups
