@@ -504,6 +504,8 @@ Fail2ban watches log files (in this case `/var/log/auth.log`) for patterns that 
 
 **Automated port scanning baseline.** Running scheduled Nmap scans from an external host against the GCP IP and logging the results would create a continuous record of the server's external attack surface over time.
 
+**Risk Assessment.** Producing a formal risk assessment for this environment — identifying realistic threats, scoring likelihood and impact using CVSS, and mapping each control deployed to the threat it mitigates — would demonstrate analytical thinking beyond the technical build. A SOC analyst's job is not just to configure defenses but to reason about why each one matters and what residual risk remains after hardening. This project has the controls. Documenting the threat model behind them is the next step.
+
 ---
 
 ## Contact
