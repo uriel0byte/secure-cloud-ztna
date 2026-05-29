@@ -61,7 +61,9 @@ Public Internet
 ```
 secure-cloud-ztna/
 ├── README.md
-└── ZTNA-Deployment-Report.md   ← Full deployment report
+├── ZTNA-Deployment-Report.md   ← Full deployment report
+├── PORT-SCAN-BASELINE.md
+└── References.md
 ```
 
 ---
