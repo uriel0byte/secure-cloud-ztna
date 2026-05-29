@@ -429,42 +429,15 @@ One additional capability worth knowing: Tailscale supports exit nodes, where de
 
 ---
 
-**Tor — anonymity network, not a VPN**
-
-Tor routes traffic through a chain of volunteer-run relays, typically three. Each relay only knows the previous hop and the next hop — never the full path. This makes it very difficult to trace traffic back to its origin.
-
-The tradeoff is performance. The multi-hop routing adds significant latency by design. Tor solves an anonymity problem, not a connectivity or access control problem. Using it for persistent SSH administration would be impractical. It is the wrong tool for what this project does.
-
----
-
-**DoH and DoT — DNS encryption only**
-
-DNS over HTTPS (DoH) and DNS over TLS (DoT) are not VPNs. They only encrypt DNS queries — the lookups your device makes when translating a domain name like `tailscale.com` into an IP address.
-
-Normal DNS is unencrypted. Your ISP and anyone monitoring the network can see every domain you look up, even when the connection itself is encrypted via HTTPS. DoH and DoT wrap those queries in encryption so the lookups are not visible to network observers. It is a useful privacy layer, but a narrow one — it only protects the name resolution step, not the traffic itself.
-
----
-
-**Quick reference**
-
-| | Purpose | Encrypts traffic | Hides identity | Needs central server |
-|---|---|---|---|---|
-| Normal traffic | Connectivity | No | No | No |
-| Traditional VPN | Privacy / access control | Yes | Partially | Yes — always |
-| IPSec | Encryption protocol underlying most VPNs | Yes | Partially | Yes — or peer-to-peer |
-| Mesh VPN (Tailscale) | Secure P2P connectivity | Yes | No | Coordination only |
-| Tor | Anonymity | Yes | Yes | No (relay network) |
-| DoH / DoT | DNS query privacy only | DNS only | No | Depends on resolver |
-
-**Further reading:** [Cloudflare — What is IPSec](https://www.cloudflare.com/learning/network-layer/what-is-ipsec/) | [Tailscale How It Works](https://tailscale.com/blog/how-tailscale-works) | [WireGuard Technical Whitepaper](https://www.wireguard.com/papers/wireguard.pdf) | [Tor Project Overview](https://www.torproject.org/about/history/) | [Cloudflare — What is DoH](https://www.cloudflare.com/learning/dns/dns-over-https/)
-
----
-
 ### Fail2ban
 
 Fail2ban watches log files (in this case `/var/log/auth.log`) for patterns that indicate an attack — repeated failed login attempts from the same IP, for example. When a threshold is crossed, it fires an iptables rule to block that IP for a configurable duration. It does not prevent a first attempt, but it makes large-scale brute-force and credential-stuffing attacks impractical by rate-limiting the attacker at the kernel level.
 
 **Further reading:** [Fail2ban Documentation](https://www.fail2ban.org/wiki/index.php/Main_Page)
+
+---
+
+[Read more concepts](./References.md) 
 
 ---
 
