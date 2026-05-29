@@ -387,25 +387,8 @@ Configuration drift is what happens when a system is managed manually over time 
 
 ---
 
-### VPN Types, Mesh Networks, and Related Protocols
+### Mesh Networks, and Related Protocols
 
-A lot of terms get used interchangeably in security conversations when they describe fundamentally different things. This covers where each one sits and how they relate to what was built in this project.
-
----
-
-**Normal traffic (unencrypted)**
-
-Plain internet traffic travels unencrypted between your device and its destination. Your ISP sees it. Anyone positioned between you and the server can read it. There is no tunnel, no authentication requirement, and no privacy guarantee. This is the default state of any server before hardening.
-
----
-
-**Traditional VPN — hub-and-spoke**
-
-A traditional VPN routes all client traffic through a central server. Every device connects to that server — not to each other. Your traffic leaves your device encrypted, arrives at the VPN server, gets decrypted, and continues onward. If the server goes down, everyone loses access. This is the model behind corporate VPNs and consumer services like NordVPN or ExpressVPN.
-
-The structural problem: every packet travels to the central server and back, even if two devices are on the same local network. The server is a bottleneck and a single point of failure.
-
----
 
 **IPSec — the protocol underneath most traditional VPNs**
 
