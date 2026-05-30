@@ -81,6 +81,21 @@ The full deployment report covers:
 
 ---
 
+## Future Work
+
+- [x] Automated port scan baseline
+- [ ] Risk assessment
+- [ ] pfSense firewall
+- [ ] Port Scan Attack Detector (PSAD)
+- [ ] Infrastructure metrics dashboard (Prometheus + Grafana)
+- [ ] Network traffic monitoring (Suricata / Zeek)
+- [ ] Host-based intrusion detection (Wazuh)
+- [ ] Infrastructure as code (Terraform + Ansible)
+- [ ] Off-site backup storage (GCP Cloud Storage)
+- [ ] Centralized log forwarding (SIEM)
+
+---
+
 ## Background
 
 This project is part of an active portfolio built towards a SOC Tier 1 / Blue Team role. I care about documentation quality, verifiable evidence of execution, and honest post-mortems, not just making things work.
