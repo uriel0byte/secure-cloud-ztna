@@ -446,6 +446,8 @@ Fail2ban watches log files (in this case `/var/log/auth.log`) for patterns that 
 
 ### Future Work
 
+*  [x] **Automated port scanning baseline.** Scheduled Nmap scans run nightly from the GCP server, logging timestamped results and diffing against a clean baseline to detect any change in the attack surface. → [PORT-SCAN-BASELINE.md](./PORT-SCAN-BASELINE.md)
+
 *  [ ] - **Infrastructure Metrics Dashboard.** Deploying a Prometheus node exporter on the server with a Grafana frontend would provide real-time visibility into system performance — CPU, memory, disk, and network throughput. While not a security tool by default, anomalous spikes in these metrics can surface signs of active attacks or misconfiguration that logs alone might miss.
 
 *  [ ] - **Network Traffic Monitoring.** Deploying Suricata or Zeek on the server to inspect inbound traffic at the packet level would add a detection layer below the firewall. Where UFW blocks by rule, an IDS can identify suspicious patterns in traffic that the firewall technically allows — port scans, protocol anomalies, or known malicious signatures.
@@ -457,8 +459,6 @@ Fail2ban watches log files (in this case `/var/log/auth.log`) for patterns that 
 *  [ ] - **Off-site backup storage.** Modifying the backup script to push archives to a GCP Cloud Storage bucket separates backup storage from the host — the most basic requirement for backups to be useful in a real failure scenario.
 
 *  [ ] - **Centralized log forwarding.** Shipping authentication, UFW, and system logs to an external SIEM (Splunk, Elastic, or Wazuh's built-in stack) would allow for persistent threat tracking, correlation across time, and alerting — which is the actual SOC use case this lab is preparing for.
-
-*  [x] **Automated port scanning baseline.** Scheduled Nmap scans run nightly from the GCP server, logging timestamped results and diffing against a clean baseline to detect any change in the attack surface. → [PORT-SCAN-BASELINE.md](./PORT-SCAN-BASELINE.md)
 
 *  [ ] - **Risk Assessment.** Producing a formal risk assessment for this environment — identifying realistic threats, scoring likelihood and impact using CVSS, and mapping each control deployed to the threat it mitigates — would demonstrate analytical thinking beyond the technical build. A SOC analyst's job is not just to configure defenses but to reason about why each one matters and what residual risk remains after hardening. This project has the controls. Documenting the threat model behind them is the next step.
 
