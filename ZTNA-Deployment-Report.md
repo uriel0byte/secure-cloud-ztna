@@ -5,7 +5,7 @@
 
 ## Executive Summary
 
-The purpose of this project is to secure (harden) a publicly available GCP Linux server to a Zero Trust model. I removed password-based authentication with Authentication by cryptographic key pairs, dropped (silently) all inbound reconnaissance traffic at the kernel level, and restricted SSH access to an encrypted Private Mesh Network. Automated nightly backups are regularly performed to prevent the loss of the configuration due to erroneous remote commands. An internal audit confirmed that the server actively drops all unauthorized traffic and has no attack surface accessible from the Public Internet.
+The purpose of this project is to secure (harden) a publicly available GCP Linux server to a Zero Trust model. I replaced password-based authentication with cryptographic key pairs, dropped (silently) all inbound reconnaissance traffic at the kernel level, and restricted SSH access to an encrypted Private Mesh Network. Automated nightly backups are regularly performed to prevent the loss of the configuration due to erroneous remote commands. An internal audit confirmed that the server actively drops all unauthorized traffic and has no attack surface accessible from the Public Internet.
 
 ---
 
@@ -446,25 +446,25 @@ Fail2ban watches log files (in this case `/var/log/auth.log`) for patterns that 
 
 ### Future Work
 
-- [ ] - **Infrastructure Metrics Dashboard.** Deploying a Prometheus node exporter on the server with a Grafana frontend would provide real-time visibility into system performance — CPU, memory, disk, and network throughput. While not a security tool by default, anomalous spikes in these metrics can surface signs of active attacks or misconfiguration that logs alone might miss.
+*  [ ] - **Infrastructure Metrics Dashboard.** Deploying a Prometheus node exporter on the server with a Grafana frontend would provide real-time visibility into system performance — CPU, memory, disk, and network throughput. While not a security tool by default, anomalous spikes in these metrics can surface signs of active attacks or misconfiguration that logs alone might miss.
 
-- [ ] - **Network Traffic Monitoring.** Deploying Suricata or Zeek on the server to inspect inbound traffic at the packet level would add a detection layer below the firewall. Where UFW blocks by rule, an IDS can identify suspicious patterns in traffic that the firewall technically allows — port scans, protocol anomalies, or known malicious signatures.
+*  [ ] - **Network Traffic Monitoring.** Deploying Suricata or Zeek on the server to inspect inbound traffic at the packet level would add a detection layer below the firewall. Where UFW blocks by rule, an IDS can identify suspicious patterns in traffic that the firewall technically allows — port scans, protocol anomalies, or known malicious signatures.
 
-- [ ] - **Host-based intrusion detection.** Wazuh (open source) could be deployed as an agent on this server to monitor file integrity, watch for privilege escalation attempts, and generate alerts on suspicious system calls — adding active detection on top of the current passive firewall logging.
+*  [ ] - **Host-based intrusion detection.** Wazuh (open source) could be deployed as an agent on this server to monitor file integrity, watch for privilege escalation attempts, and generate alerts on suspicious system calls — adding active detection on top of the current passive firewall logging.
 
-- [ ] - **Infrastructure as Code.** Rewriting these manual steps as Terraform (to provision the GCP instance) and Ansible (to configure it) would make the environment fully reproducible in minutes. This is the standard for production infrastructure.
+*  [ ] - **Infrastructure as Code.** Rewriting these manual steps as Terraform (to provision the GCP instance) and Ansible (to configure it) would make the environment fully reproducible in minutes. This is the standard for production infrastructure.
 
-- [ ] - **Off-site backup storage.** Modifying the backup script to push archives to a GCP Cloud Storage bucket separates backup storage from the host — the most basic requirement for backups to be useful in a real failure scenario.
+*  [ ] - **Off-site backup storage.** Modifying the backup script to push archives to a GCP Cloud Storage bucket separates backup storage from the host — the most basic requirement for backups to be useful in a real failure scenario.
 
-- [ ] - **Centralized log forwarding.** Shipping authentication, UFW, and system logs to an external SIEM (Splunk, Elastic, or Wazuh's built-in stack) would allow for persistent threat tracking, correlation across time, and alerting — which is the actual SOC use case this lab is preparing for.
+*  [ ] - **Centralized log forwarding.** Shipping authentication, UFW, and system logs to an external SIEM (Splunk, Elastic, or Wazuh's built-in stack) would allow for persistent threat tracking, correlation across time, and alerting — which is the actual SOC use case this lab is preparing for.
 
-- [x] - **Automated port scanning baseline.** Running scheduled Nmap scans from an external host against the GCP IP and logging the results would create a continuous record of the server's external attack surface over time.
+*  [x] **Automated port scanning baseline.** Scheduled Nmap scans run nightly from the GCP server, logging timestamped results and diffing against a clean baseline to detect any change in the attack surface. → [PORT-SCAN-BASELINE.md](./PORT-SCAN-BASELINE.md)
 
-- [ ] - **Risk Assessment.** Producing a formal risk assessment for this environment — identifying realistic threats, scoring likelihood and impact using CVSS, and mapping each control deployed to the threat it mitigates — would demonstrate analytical thinking beyond the technical build. A SOC analyst's job is not just to configure defenses but to reason about why each one matters and what residual risk remains after hardening. This project has the controls. Documenting the threat model behind them is the next step.
+*  [ ] - **Risk Assessment.** Producing a formal risk assessment for this environment — identifying realistic threats, scoring likelihood and impact using CVSS, and mapping each control deployed to the threat it mitigates — would demonstrate analytical thinking beyond the technical build. A SOC analyst's job is not just to configure defenses but to reason about why each one matters and what residual risk remains after hardening. This project has the controls. Documenting the threat model behind them is the next step.
 
-- [ ] - **pfSense Firewall.** Replacing UFW with a pfSense instance positioned in front of the GCP server would add a full stateful firewall with a web UI, traffic logging, and rule management that scales beyond what UFW handles comfortably. Combined with the existing Tailscale mesh, this would give the environment a proper perimeter firewall layer with visibility into traffic patterns over time.
+*  [ ] - **pfSense Firewall.** Replacing UFW with a pfSense instance positioned in front of the GCP server would add a full stateful firewall with a web UI, traffic logging, and rule management that scales beyond what UFW handles comfortably. Combined with the existing Tailscale mesh, this would give the environment a proper perimeter firewall layer with visibility into traffic patterns over time.
 
-- [ ] - **Port Scan Attack Detector (PSAD).** PSAD monitors iptables log entries in real time and identifies port scan patterns — sequential port probes, SYN floods, and other reconnaissance signatures — then optionally blocks the source IP automatically. Where the current Nmap baseline confirms the attack surface looks right from a known vantage point, PSAD watches for unknown parties actively probing it.
+*  [ ] - **Port Scan Attack Detector (PSAD).** PSAD monitors iptables log entries in real time and identifies port scan patterns — sequential port probes, SYN floods, and other reconnaissance signatures — then optionally blocks the source IP automatically. Where the current Nmap baseline confirms the attack surface looks right from a known vantage point, PSAD watches for unknown parties actively probing it.
 
 ---
 
