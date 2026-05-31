@@ -63,6 +63,7 @@ secure-cloud-ztna/
 ├── README.md
 ├── ZTNA-Deployment-Report.md   ← Full deployment report
 ├── PORT-SCAN-BASELINE.md
+├── PSAD-DEPLOYMENT.md
 └── References.md
 ```
 
@@ -84,9 +85,9 @@ The full deployment report covers:
 ## Future Work
 
 - [x] Automated port scan baseline
+- [x] Port Scan Attack Detector (PSAD)
 - [ ] Risk assessment
 - [ ] pfSense firewall
-- [ ] Port Scan Attack Detector (PSAD)
 - [ ] Infrastructure metrics dashboard (Prometheus + Grafana)
 - [ ] Network traffic monitoring (Suricata / Zeek)
 - [ ] Host-based intrusion detection (Wazuh)
