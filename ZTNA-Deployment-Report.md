@@ -147,7 +147,9 @@ sudo apt install fail2ban
 sudo systemctl enable --now fail2ban
 
 # Confirm the sshd jail is active and display any currently banned IPs
-sudo fail2ban-client status sshd
+sudo fail2ban-client status sshd 
+# Or
+sudo fail2ban-client status --all
 ```
 
 ---
