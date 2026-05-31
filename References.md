@@ -414,9 +414,9 @@ An EC2 instance on Amazon's commercial cloud infrastructure. The reverse DNS (`e
 
 Viettel is Vietnam's largest telecommunications provider. This IP arrived after PSAD was fully configured and fired an alert automatically — no manual trigger. It probed port 3389 only. Single-port probes like this are typically automated bots running through IP lists, checking whether RDP is exposed. They are not targeted attacks — they are opportunistic scans looking for any open RDP port to attempt credential stuffing against.
 
-**`45.142.193.164` — Unknown**
+**`45.142.193.164` — Skynet Network Ltd, Amsterdam, Netherlands**
 
-No ipinfo data was pulled for this one during the session. Worth looking up: `curl https://ipinfo.io/45.142.193.164`. The pattern (single port, RDP) matches the same automated scanner profile as the Viettel IP.
+Skynet Network Ltd (AS214295) is a hosting provider that frequently appears in threat intelligence databases. From a defensive Blue Team perspective, you will often spot this IP and its neighboring subnets in firewall and IDS logs triggering automated alerts. OSINT sources confirm this specific IP is highly active as an automated bot, frequently scanning for exposed RDP (Port 3389) and SSH connections. These are not targeted attacks; rather, the host is routinely running through massive IP lists to identify open ports, making it a prime candidate for opportunistic credential stuffing and brute-force attempts.
 
 **What this means in practice:** Public IP addresses are scanned constantly. There is no such thing as a "quiet" period for a public IP. The ZTNA stack was already blocking all of this before PSAD was deployed — UFW's default-deny rule dropped every packet. PSAD's contribution is making the noise visible, named, and reported. The server was never in danger. The detections are evidence of the firewall working, not evidence of a breach.
 
