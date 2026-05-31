@@ -194,12 +194,11 @@ To                         Action      From
 
 PSAD caught unsolicited reconnaissance from three separate sources within hours of going live. None of these were part of the controlled test. They arrived on their own.
 
-| Source IP | Origin | Organization | Ports Probed | Blocked |
+| Source IP | Origin | Organization | Ports Probed | Action |
 |---|---|---|---|---|
-| `18.221.18.194` | Columbus, Ohio, US | Amazon AWS EC2 | 22, 3389 | Yes |
-| `223.206.32.53` | Thailand | True Move H (shared ISP) | 22, 3389 | Yes |
-| `103.1.210.25` | Hanoi, Vietnam | Viettel | 3389 | Yes |
-| `45.142.193.164` | Unknown | Unknown | 3389 | Yes |
+| `18.221.18.194` | Columbus, Ohio, US | Amazon AWS EC2 | 22, 3389 | Dropped by UFW |
+| `103.1.210.25` | Hanoi, Vietnam | Viettel | 3389 | Dropped by UFW |
+| `45.142.193.164` | Amsterdam, North Holland | SKYNET NETWORK LTD | 3389 | Dropped by UFW |
 
 The AWS EC2 instance is a common pattern — rented cloud infrastructure running automated port sweeps. The Viettel IP out of Hanoi arrived after PSAD was fully configured and fired an alert with no manual trigger. Three countries, two major cloud and ISP networks, all blocked and logged automatically.
 
@@ -527,7 +526,7 @@ The AWS EC2 scanner and the Viettel IP from Hanoi arriving unsolicited within ho
 
 **Credential exposure in terminal recording.** The Gmail App Password was briefly visible in the Asciinema recording for Phase 3 during the `sasl_passwd` file creation. The password was immediately revoked and replaced. For future recordings involving credentials, write the file contents before starting the recording, or use a placeholder value during recording and substitute the real credential after the camera is off.
 
-**Gmail's abuse detection.** The initial email alert volume from testing and the medium logging experiment triggered Gmail's abuse detection and temporarily suspended the account." It's an honest post-mortem detail and it's the kind of thing that only shows up when you actually run the thing live.
+**Gmail suspension** The initial email alert volume from testing and the medium logging experiment triggered Gmail's abuse detection and temporarily suspended the account.
 
 ---
 
