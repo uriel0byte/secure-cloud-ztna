@@ -86,14 +86,14 @@ The full deployment report covers:
 
 - [x] Automated port scan baseline
 - [x] Port Scan Attack Detector (PSAD)
-- [ ] Risk assessment
-- [ ] pfSense firewall
-- [ ] Infrastructure metrics dashboard (Prometheus + Grafana)
-- [ ] Network traffic monitoring (Suricata / Zeek)
-- [ ] Host-based intrusion detection (Wazuh)
-- [ ] Infrastructure as code (Terraform + Ansible)
 - [ ] Off-site backup storage (GCP Cloud Storage)
+- [ ] Host-based intrusion detection (Wazuh)
 - [ ] Centralized log forwarding (SIEM)
+- [ ] Network Traffic Monitoring (Suricata + Zeek + RITA).
+- [ ] Infrastructure metrics dashboard (Prometheus + Grafana)
+- [ ] pfSense firewall
+- [ ] Infrastructure as code (Terraform + Ansible)
+- [ ] Risk assessment
 
 ---
 
