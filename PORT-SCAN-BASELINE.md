@@ -1,8 +1,6 @@
 # Automated Port Scan Baseline
 
-**Author:** Supawat H. (uriel0byte)  
-**Environment:** Google Cloud Platform  
-**Status:** Complete
+**Author:** Supawat H. (uriel0byte)  |  **Environment:** Google Cloud Platform  |  **Status:** Complete
 
 ---
 
