@@ -474,6 +474,10 @@ At `medium` logging level, UFW logs outbound packets too. PSAD sees those and ha
 
 ---
 
+[Read more concepts](./References.md#psad-postfix-and-email-alerting)
+
+---
+
 ## What I Actually Learned
 
 This was my first time working with an intrusion detection tool of any kind. A few things that genuinely confused me during the process and how I now understand them.
