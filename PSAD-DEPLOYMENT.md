@@ -1,8 +1,6 @@
 # Port Scan Attack Detector (PSAD) Deployment
 
-**Author:** Supawat H. (uriel0byte)  
-**Environment:** Google Cloud Platform  
-**Status:** Complete
+**Author:** Supawat H. (uriel0byte)  |  **Environment:** Google Cloud Platform  |  **Status:** Complete
 
 ---
 
