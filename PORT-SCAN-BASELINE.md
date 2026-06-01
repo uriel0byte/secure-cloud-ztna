@@ -307,6 +307,28 @@ Empty diff sections mean the current scan matches the baseline exactly. If a por
 
 ---
 
+## Post-Deployment Detection
+
+On June 1st at 03:00, the nightly scan caught a real change. Port 25 (SMTP) had opened on the Tailscale interface, introduced by Postfix during the PSAD deployment two days prior. The diff log flagged it automatically:
+
+```
+=== EXTERNAL DIFF ===                                                                                               
+Timestamp: 20260601_030001                                                                                          
+=== INTERNAL DIFF ===                                                                                               
+2c2                                                                                                                 
+< Not shown: 999 filtered tcp ports (no-response)                                                                   
+---                                                                                                                 
+> Not shown: 998 filtered tcp ports (no-response)                                                                   
+4a5                                                                                                                 
+> 25/tcp open  smtp   
+```
+
+Postfix listens on port 25 by default to accept inbound mail. For a relay-only configuration — where the server only sends outbound alerts — this is unnecessary exposure. The fix was setting `inet_interfaces = loopback-only` in `/etc/postfix/main.cf`, restricting Postfix to localhost only. A follow-up scan confirmed port 25 closed. The internal baseline was updated to reflect the corrected state.
+
+This is the two projects working together exactly as intended — the PSAD deployment introduced an unintended service, and the port scan baseline caught it the same night.
+
+---
+
 ## Script Breakdown
 
 This section explains what the automation script does, line by line. Skip it if you already know Bash. Come back to it if the diff output ever looks wrong and you need to trace why.
@@ -429,6 +451,8 @@ The `>` means that line exists in the new scan but not the baseline. That's the 
 **Noise filtering.** Catching the noisy diff output during manual testing rather than after cron started running saved a log full of false positives. The `grep -v` filter makes the diff output actually actionable.
 
 **Live cron verification.** Testing the cron job by temporarily setting it 2 minutes ahead rather than waiting until 03:00 confirmed the automation was working before the session ended. A scheduled job that silently fails is worse than no scheduled job — at least with no job you know you have a gap.
+
+**Cross-project detection.** The nightly scan caught port 25 opening on the Tailscale interface after Postfix was deployed for PSAD. The exposure was introduced and detected within 24 hours — without manual intervention. That is the whole point of automated baseline monitoring.
 
 ---
 
