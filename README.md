@@ -84,8 +84,8 @@ The full deployment report covers:
 
 ## Future Work
 
-- [x] Automated port scan baseline
-- [x] Port Scan Attack Detector (PSAD)
+- [x] Automated port scan baseline → [PORT-SCAN-BASELINE.md](./PORT-SCAN-BASELINE.md)
+- [x] Port Scan Attack Detector (PSAD) → [PSAD-DEPLOYMENT.md](./PSAD-DEPLOYMENT.md)
 - [ ] Off-site backup storage (GCP Cloud Storage)
 - [ ] Host-based intrusion detection (Wazuh)
 - [ ] Centralized log forwarding (SIEM)
