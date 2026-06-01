@@ -454,7 +454,7 @@ Fail2ban watches log files (in this case `/var/log/auth.log`) for patterns that 
 
 *  [ ] - **Infrastructure Metrics Dashboard.** Deploying a Prometheus node exporter on the server with a Grafana frontend would provide real-time visibility into system performance — CPU, memory, disk, and network throughput. While not a security tool by default, anomalous spikes in these metrics can surface signs of active attacks or misconfiguration that logs alone might miss.
 
-*  [ ] - **Network Traffic Monitoring.** Deploying Suricata or Zeek on the server to inspect inbound traffic at the packet level would add a detection layer below the firewall. Where UFW blocks by rule, an IDS can identify suspicious patterns in traffic that the firewall technically allows — port scans, protocol anomalies, or known malicious signatures.
+*  [ ] - **Network Traffic Monitoring (Zeek + RITA).** Deploying Zeek on the server to inspect inbound traffic at the packet level adds a detection layer below the firewall — where UFW blocks by rule, Zeek can identify suspicious patterns in traffic the firewall technically allows. RITA sits on top of Zeek logs and runs behavioral threat analysis, catching things like beaconing and long connections that signature-based tools miss. The two are designed to work together and make more sense as a single deployment than separate projects.
 
 *  [ ] - **Host-based intrusion detection.** Wazuh (open source) could be deployed as an agent on this server to monitor file integrity, watch for privilege escalation attempts, and generate alerts on suspicious system calls — adding active detection on top of the current passive firewall logging.
 
