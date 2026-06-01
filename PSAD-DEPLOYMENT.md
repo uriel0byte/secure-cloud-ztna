@@ -237,6 +237,8 @@ This is what the internet looks like from any public IP. The server has been run
 }
 ```
 
+*Note: The email evidence screenshots are unavailable due to account suspension during testing*
+
 > 📧 **Alert email — Postfix relay test:** [screenshot]
 
 > 📧 **Alert email — PSAD Nmap detection:** [screenshot]
