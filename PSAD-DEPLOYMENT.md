@@ -544,6 +544,8 @@ The AWS EC2 scanner and the Viettel IP from Hanoi arriving unsolicited within ho
 
   *  *Note: The email evidence screenshots are unavailable due to account suspension during testing*
 
+**Postfix opened port 25 by default.** The initial Postfix configuration left it listening on all interfaces, including the Tailscale address. Port 25 is not needed for a relay-only setup — Postfix only needs to send outbound alerts, not accept inbound mail. Setting `inet_interfaces = loopback-only` should have been part of the initial deployment rather than a post-deployment fix. The exposure was caught the same night by the automated port scan baseline.
+
 ---
 
 ## Future Work
