@@ -89,7 +89,7 @@ The full deployment report covers:
 - [ ] Off-site backup storage (GCP Cloud Storage)
 - [ ] Host-based intrusion detection (Wazuh)
 - [ ] Centralized log forwarding (SIEM)
-- [ ] Network Traffic Monitoring (Suricata + Zeek + RITA).
+- [ ] Network Traffic Monitoring (Suricata + Zeek + RITA)
 - [ ] Infrastructure metrics dashboard (Prometheus + Grafana)
 - [ ] pfSense firewall
 - [ ] Infrastructure as code (Terraform + Ansible)
