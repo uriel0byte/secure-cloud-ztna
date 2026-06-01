@@ -452,21 +452,21 @@ Fail2ban watches log files (in this case `/var/log/auth.log`) for patterns that 
 
 *  [x] - **Port Scan Attack Detector (PSAD).** PSAD monitors iptables log entries in real time and identifies port scan patterns — sequential port probes, SYN floods, and other reconnaissance signatures — then optionally blocks the source IP automatically. Where the current Nmap baseline confirms the attack surface looks right from a known vantage point, PSAD watches for unknown parties actively probing it. → [PSAD-DEPLOYMENT.md](./PSAD-DEPLOYMENT.md)
 
-*  [ ] - **Infrastructure Metrics Dashboard.** Deploying a Prometheus node exporter on the server with a Grafana frontend would provide real-time visibility into system performance — CPU, memory, disk, and network throughput. While not a security tool by default, anomalous spikes in these metrics can surface signs of active attacks or misconfiguration that logs alone might miss.
-
-*  [ ] - **Network Traffic Monitoring (Zeek + RITA).** Deploying Zeek on the server to inspect inbound traffic at the packet level adds a detection layer below the firewall — where UFW blocks by rule, Zeek can identify suspicious patterns in traffic the firewall technically allows. RITA sits on top of Zeek logs and runs behavioral threat analysis, catching things like beaconing and long connections that signature-based tools miss. The two are designed to work together and make more sense as a single deployment than separate projects.
+*  [ ] - **Off-site backup storage.** Modifying the backup script to push archives to a GCP Cloud Storage bucket separates backup storage from the host — the most basic requirement for backups to be useful in a real failure scenario.
 
 *  [ ] - **Host-based intrusion detection.** Wazuh (open source) could be deployed as an agent on this server to monitor file integrity, watch for privilege escalation attempts, and generate alerts on suspicious system calls — adding active detection on top of the current passive firewall logging.
 
-*  [ ] - **Infrastructure as Code.** Rewriting these manual steps as Terraform (to provision the GCP instance) and Ansible (to configure it) would make the environment fully reproducible in minutes. This is the standard for production infrastructure.
-
-*  [ ] - **Off-site backup storage.** Modifying the backup script to push archives to a GCP Cloud Storage bucket separates backup storage from the host — the most basic requirement for backups to be useful in a real failure scenario.
-
 *  [ ] - **Centralized log forwarding.** Shipping authentication, UFW, and system logs to an external SIEM (Splunk, Elastic, or Wazuh's built-in stack) would allow for persistent threat tracking, correlation across time, and alerting — which is the actual SOC use case this lab is preparing for.
 
-*  [ ] - **Risk Assessment.** Producing a formal risk assessment for this environment — identifying realistic threats, scoring likelihood and impact using CVSS, and mapping each control deployed to the threat it mitigates — would demonstrate analytical thinking beyond the technical build. A SOC analyst's job is not just to configure defenses but to reason about why each one matters and what residual risk remains after hardening. This project has the controls. Documenting the threat model behind them is the next step.
+*  [ ] - **Network Traffic Monitoring (Suricata + Zeek + RITA).** Deploying Suricata and Zeek on the server adds a detection layer below the firewall — where UFW blocks by rule, these tools identify suspicious patterns in traffic the firewall technically allows. Suricata handles signature-based detection: known malicious patterns, protocol anomalies, and port scan signatures firing in real time. Zeek parses network traffic into structured logs. RITA sits on top of those Zeek logs and runs behavioral threat analysis, catching things like beaconing, long connections, and DNS-based C2 that signatures alone miss. The three together cover both known-bad detection and unknown behavioral patterns.
+
+*  [ ] - **Infrastructure Metrics Dashboard.** Deploying a Prometheus node exporter on the server with a Grafana frontend would provide real-time visibility into system performance — CPU, memory, disk, and network throughput. While not a security tool by default, anomalous spikes in these metrics can surface signs of active attacks or misconfiguration that logs alone might miss.
 
 *  [ ] - **pfSense Firewall.** Replacing UFW with a pfSense instance positioned in front of the GCP server would add a full stateful firewall with a web UI, traffic logging, and rule management that scales beyond what UFW handles comfortably. Combined with the existing Tailscale mesh, this would give the environment a proper perimeter firewall layer with visibility into traffic patterns over time.
+
+*  [ ] - **Infrastructure as Code.** Rewriting these manual steps as Terraform (to provision the GCP instance) and Ansible (to configure it) would make the environment fully reproducible in minutes. This is the standard for production infrastructure.
+
+*  [ ] - **Risk Assessment.** Producing a formal risk assessment for this environment — identifying realistic threats, scoring likelihood and impact using CVSS, and mapping each control deployed to the threat it mitigates — would demonstrate analytical thinking beyond the technical build. A SOC analyst's job is not just to configure defenses but to reason about why each one matters and what residual risk remains after hardening. This project has the controls. Documenting the threat model behind them is the next step.
 
 ---
 
