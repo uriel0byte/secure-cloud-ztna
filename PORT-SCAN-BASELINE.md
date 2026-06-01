@@ -327,6 +327,8 @@ Postfix listens on port 25 by default to accept inbound mail. For a relay-only c
 
 This is the two projects working together exactly as intended — the PSAD deployment introduced an unintended service, and the port scan baseline caught it the same night.
 
+> 📹 **Recording:** [![Asciinema - Post-Deployment: Port 25 Detection and Fix](https://asciinema.org/a/1172668.svg)](https://asciinema.org/a/1172668)
+
 ---
 
 ## Script Breakdown
