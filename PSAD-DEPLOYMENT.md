@@ -540,7 +540,7 @@ The AWS EC2 scanner and the Viettel IP from Hanoi arriving unsolicited within ho
 
 **Gmail suspension** The initial email alert volume from testing and the medium logging experiment triggered Gmail's abuse detection and temporarily suspended the account.
 
-        *  *Note: The email evidence screenshots are unavailable due to account suspension during testing*
+  *  *Note: The email evidence screenshots are unavailable due to account suspension during testing*
 
 ---
 
