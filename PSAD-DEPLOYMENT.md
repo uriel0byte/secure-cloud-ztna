@@ -237,8 +237,6 @@ This is what the internet looks like from any public IP. The server has been run
 }
 ```
 
-*Note: The email evidence screenshots are unavailable due to account suspension during testing*
-
 > 📧 **Alert email — Postfix relay test:** [screenshot]
 
 > 📧 **Alert email — PSAD Nmap detection:** [screenshot]
@@ -541,6 +539,8 @@ The AWS EC2 scanner and the Viettel IP from Hanoi arriving unsolicited within ho
 **Credential exposure in terminal recording.** The Gmail App Password was briefly visible in the Asciinema recording for Phase 3 during the `sasl_passwd` file creation. The password was immediately revoked and replaced. For future recordings involving credentials, write the file contents before starting the recording, or use a placeholder value during recording and substitute the real credential after the camera is off.
 
 **Gmail suspension** The initial email alert volume from testing and the medium logging experiment triggered Gmail's abuse detection and temporarily suspended the account.
+
+        *  *Note: The email evidence screenshots are unavailable due to account suspension during testing*
 
 ---
 
