@@ -550,7 +550,10 @@ The AWS EC2 scanner and the Viettel IP from Hanoi arriving unsolicited within ho
 
 ## Future Work
 
-- [ ] Raise `EMAIL_ALERT_DANGER_LEVEL` to 2 or 3 after a baseline observation period to reduce alert noise
+- [x] Raise `EMAIL_ALERT_DANGER_LEVEL` to 2 or 3 after a baseline observation period to reduce alert noise
+
+> 📹 **Recording:** [![Asciinema - Raise email alert to level 3](https://asciinema.org/a/1179520.svg)](https://asciinema.org/a/1179520)
+ 
 - [ ] Add logrotate configuration for `/var/log/psad/`
 - [ ] Test and document auto-IDS (active blocking) mode in a controlled environment
 - [ ] Explore wiring PSAD alerts into a SIEM rather than email for persistent correlation
