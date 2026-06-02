@@ -235,7 +235,9 @@ This is what the internet looks like from any public IP. The server has been run
 }
 ```
 
-> 📧 **Alert email — Postfix relay test:** ![Postfix relay test](./Evidence/PSAD/Postfix_relay_test.png)
+> 📧 **Alert email — Postfix relay test:**
+
+![Postfix relay test](./Evidence/PSAD/Postfix_relay_test.png)
 
 > 📧 **Alert email — Postfix relay test (After account's restored):** ![Postfix relay test (After account's restored)](./Evidence/PSAD/Postfix_relay_test_account_restored.png)
 
