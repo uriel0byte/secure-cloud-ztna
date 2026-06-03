@@ -124,7 +124,9 @@ The credentials file `/etc/postfix/sasl_passwd` was locked to `600` permissions 
 
 Test email confirmed delivered. Three emails arrived in the inbox — the failed attempts from before the duplicate fix were queued and delivered once postfix was correctly configured.
 
-> 📹 **Recording:** [![Asciinema - Phase 3: Postfix and Gmail SMTP Relay](https://asciinema.org/a/1168739.svg)](https://asciinema.org/a/1168739) 
+> 📹 **Recording:** [![Asciinema - Phase 3: Postfix and Gmail SMTP Relay](https://asciinema.org/a/1168739.svg)](https://asciinema.org/a/1168739)
+
+> 📹 **Recording:** [![Asciinema - Account Restoration and Relay Confirmation](https://asciinema.org/a/1179517.svg)](https://asciinema.org/a/1179517)
 
 ---
 
@@ -197,6 +199,7 @@ PSAD caught unsolicited reconnaissance from three separate sources within hours 
 | `18.221.18.194` | Columbus, Ohio, US | Amazon AWS EC2 | 22, 3389 | Dropped by UFW |
 | `103.1.210.25` | Hanoi, Vietnam | Viettel | 3389 | Dropped by UFW |
 | `45.142.193.164` | Amsterdam, North Holland | SKYNET NETWORK LTD | 3389 | Dropped by UFW |
+| `199.231.186.30` | New York, US | vps3356818.trouble-free.net | 3389 | Dropped by UFW |
 
 The AWS EC2 instance is a common pattern — rented cloud infrastructure running automated port sweeps. The Viettel IP out of Hanoi arrived after PSAD was fully configured and fired an alert with no manual trigger. Three countries, two major cloud and ISP networks, all blocked and logged automatically.
 
@@ -222,7 +225,6 @@ This is what the internet looks like from any public IP. The server has been run
   "org": "AS38731 Vietel - CHT Company Ltd"
 }
 
-
 // 45.142.193.164
 {
   "ip": "45.142.193.164",
@@ -232,6 +234,18 @@ This is what the internet looks like from any public IP. The server has been run
   "org": "AS214295 SKYNET NETWORK LTD",
   "postal": "1012",
   "timezone": "Europe/Amsterdam",
+}
+
+// 199.231.186.30
+{
+  "ip": "199.231.186.30",
+  "hostname": "vps3356818.trouble-free.net",
+  "city": "New York City",
+  "region": "New York",
+  "country": "US",
+  "org": "AS19318 Interserver, Inc",
+  "postal": "10001",
+  "timezone": "America/New_York",
 }
 ```
 
@@ -545,8 +559,6 @@ The AWS EC2 scanner and the Viettel IP from Hanoi arriving unsolicited within ho
 **Credential exposure in terminal recording.** The Gmail App Password was briefly visible in the Asciinema recording for Phase 3 during the `sasl_passwd` file creation. The password was immediately revoked and replaced. For future recordings involving credentials, write the file contents before starting the recording, or use a placeholder value during recording and substitute the real credential after the camera is off.
 
 **Gmail suspension** The initial email alert volume from testing and the medium logging experiment triggered Gmail's abuse detection and temporarily suspended the account.
-
-  *  *Note: The email evidence screenshots are unavailable due to account suspension during testing*
 
 **Postfix opened port 25 by default.** The initial Postfix configuration left it listening on all interfaces, including the Tailscale address. Port 25 is not needed for a relay-only setup — Postfix only needs to send outbound alerts, not accept inbound mail. Setting `inet_interfaces = loopback-only` should have been part of the initial deployment rather than a post-deployment fix. The exposure was caught the same night by the automated port scan baseline.
 
