@@ -94,9 +94,13 @@ For mobile access, I added an iPad to the Tailnet. A separate ed25519 key pair w
 ### Phase 4 — Automated Configuration Backup
 
 Editing SSH or firewall rules remotely without a fallback is how you lock yourself out of a cloud instance with no console access. I wrote a Bash script using `rsync` to create timestamped backups of `/etc/ssh` and `/etc/ufw` nightly. The Ubuntu Minimal image did not ship with `cron`, so I diagnosed the missing daemon, installed it, and scheduled the script at 02:00 in the root crontab.
+The backup scope was later expanded to include `/etc/psad` and `/etc/postfix` after both were deployed. The backup directory and all timestamped subdirectories were also locked to `700` at that point, `sasl_passwd` inside the Postfix backup contains the Gmail App Password in plain text, and the original `drwxr-xr-x` permissions left it readable by any user on the system. The script now runs `chmod 700 $DEST` immediately after creating each backup directory so all future backups are locked on creation.
 
 > 📹 **Recording:** [![Asciinema — Phase 4: Backup Automation](https://asciinema.org/a/1073382.svg)](https://asciinema.org/a/1073382)
 
+
+> 📹 **Recording:** [![asciicast](https://asciinema.org/a/1258915.svg)](https://asciinema.org/a/1258915)
+> 
 ---
 
 ### Phase 5 — Internal Security Audit
@@ -442,7 +446,9 @@ Fail2ban watches log files (in this case `/var/log/auth.log`) for patterns that 
 
 **No infrastructure-as-code.** This entire environment was built manually, command by command. That is fine for learning and for understanding what every setting does. But if the GCP instance needs to be rebuilt from scratch, it currently requires manual reproduction of every step. There is no single file that defines the desired state.
 
-**Backups are on the same disk.** The rsync script copies configuration files to `~/infrastructure_backups` on the same GCP persistent disk. If the disk fails or the instance is deleted, the backups go with it. They are only useful for recovery from accidental misconfiguration, not hardware failure.
+**Backups are on the same disk.** The rsync script copies configuration files to `~/infrastructure_backups` on the same GCP persistent disk. If the disk fails or the instance is deleted, the backups go with it. They are only useful for recovery from accidental misconfiguration, not hardware failure. Off-site backup to GCP Cloud Storage remains the next step.
+
+**Backup scope was too narrow initially.** The original script only covered `/etc/ssh` and `/etc/ufw`. After deploying PSAD and Postfix, neither `/etc/psad` nor `/etc/postfix` was included in backups meaning the Gmail relay config and App Password would have been unrecoverable from backup alone. Both were added in a later session alongside fixing the backup directory permissions.
 
 ---
 
