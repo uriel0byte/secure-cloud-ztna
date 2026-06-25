@@ -528,7 +528,7 @@ The AWS EC2 scanner and the Viettel IP from Hanoi arriving unsolicited within ho
 
 **Detection-only mode.** PSAD logs and alerts but takes no action. A confirmed scan source continues probing until it gives up or the operator manually intervenes. Active blocking would close that gap but introduces false-positive risk on a remote server.
 
-**No log rotation for PSAD data.** PSAD writes to `/var/log/psad/` continuously. A logrotate configuration for PSAD's output files would keep disk usage in check over time.
+**No log rotation for PSAD data.** PSAD writes to `/var/log/psad/` continuously. This was addressed in the log rotation project, a `find`-based cron job now deletes IP subdirectories older than 30 days. See [LOG-ROTATION.md](./LOG-ROTATION.md).
 
 **Email alert volume.** With `EMAIL_ALERT_DANGER_LEVEL` set to 1, every detection fires an email. On a public IP that sees constant background probing, this floods the inbox quickly — as demonstrated during the medium logging test. Raising the alert level to 2 or 3 would reduce volume while still catching meaningful scans.
 
@@ -570,7 +570,7 @@ The AWS EC2 scanner and the Viettel IP from Hanoi arriving unsolicited within ho
 
 > 📹 **Recording:** [![Asciinema - Raise email alert to level 3](https://asciinema.org/a/1179520.svg)](https://asciinema.org/a/1179520)
  
-- [x] Add logrotate configuration for `/var/log/psad/`
+- [x] Add logrotate configuration for `/var/log/psad/` → [LOG-ROTATION.md](./LOG-ROTATION.md)
 - [ ] Test and document auto-IDS (active blocking) mode in a controlled environment
 - [ ] Explore wiring PSAD alerts into a SIEM rather than email for persistent correlation
 
