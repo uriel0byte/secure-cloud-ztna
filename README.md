@@ -64,6 +64,7 @@ secure-cloud-ztna/
 ├── ZTNA-Deployment-Report.md   ← Full deployment report
 ├── PORT-SCAN-BASELINE.md
 ├── PSAD-DEPLOYMENT.md
+├── LOG-ROTATION.md
 └── References.md
 ```
 
