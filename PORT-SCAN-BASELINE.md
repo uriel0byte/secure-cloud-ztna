@@ -436,11 +436,11 @@ The `>` means that line exists in the new scan but not the baseline. That's the 
 
 **Self-scan perspective.** The automated scans run from the server against itself. This is not the same as an external attacker scanning from the internet. The server has Tailscale running and knows its own interfaces — the scan result reflects internal visibility, not external exposure. The local VM baseline captures the true external perspective, but it doesn't run on a schedule.
 
-**Diff log grows indefinitely.** The log is append-only with no rotation. Over months of daily runs it will get large. A proper implementation would rotate the log or trim entries older than a set period.
+**Diff log grows indefinitely.** The log is append-only with no rotation. Over months of daily runs it will get large. Addressed in the log rotation project, logrotate now handles `diff_log.txt` at a 1MB threshold. See [LOG-ROTATION.md](./LOG-ROTATION.md).
 
 **No alerting.** The script detects changes and logs them. It does not send an alert. A port change at 03:00 sits in `diff_log.txt` until someone manually checks it. Wiring this to an email notification or a SIEM would close that gap.
 
-**Scan files accumulate.** Every run creates two new timestamped files. There's no cleanup logic. Left unattended, `~/port_scan_logs/` will fill up with months of scan output.
+**Scan files accumulate.** Every run creates two new timestamped files. Addressed in the log rotation project a `find`-based cron job now deletes scan file pairs older than 30 days. See [LOG-ROTATION.md](./LOG-ROTATION.md).
 
 ---
 
