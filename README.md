@@ -65,6 +65,7 @@ secure-cloud-ztna/
 ├── PORT-SCAN-BASELINE.md
 ├── PSAD-DEPLOYMENT.md
 ├── LOG-ROTATION.md
+├── SSH-HARDENING-AUDIT.md
 └── References.md
 ```
 
@@ -88,6 +89,7 @@ The full deployment report covers:
 - [x] Automated port scan baseline → [PORT-SCAN-BASELINE.md](./PORT-SCAN-BASELINE.md)
 - [x] Port Scan Attack Detector (PSAD) → [PSAD-DEPLOYMENT.md](./PSAD-DEPLOYMENT.md)
 - [x] Log Rotation → [LOG-ROTATION.md](./LOG-ROTATION.md)
+- [x] SSH Hardening Audit → [SSH-HARDENING-AUDIT.md](./SSH-HARDENING-AUDIT.md)
 - [ ] Off-site backup storage (GCP Cloud Storage)
 - [ ] Host-based intrusion detection (Wazuh)
 - [ ] Centralized log forwarding (SIEM)
