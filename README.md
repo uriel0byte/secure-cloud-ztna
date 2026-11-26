@@ -2,7 +2,7 @@
 
 *Instance decommissioned after the trial credit expired. Reports and recordings are the record of the build.*
 
-**AI editing**
+**Reports are written from my own investigation notes and edited with AI assistance.**
 
 A hands-on deployment of a Zero Trust Network Access (ZTNA) architecture on a Google Cloud Platform Linux server, built, hardened and audited from scratch.
 
