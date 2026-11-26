@@ -2,6 +2,8 @@
 
 *Instance decommissioned after the trial credit expired. Reports and recordings are the record of the build.*
 
+**AI editing**
+
 A hands-on deployment of a Zero Trust Network Access (ZTNA) architecture on a Google Cloud Platform Linux server, built, hardened and audited from scratch.
 
 This is not a tutorial follow along. Each phase was run live on a real cloud instance, fixed in real-time and checked against real system telemetry. The full deployment report documents every choice, each command, and each mistake along the way.
